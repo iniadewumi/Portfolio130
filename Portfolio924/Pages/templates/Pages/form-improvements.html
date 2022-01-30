@@ -1,0 +1,285 @@
+<html lang="en">
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu">
+      {% load static %}
+      <style>
+        .styled-table th,
+        .styled-table td {
+          padding: 12px 15px;
+          text-align: left;
+        }
+
+        .styled-table {
+          border-collapse: collapse;
+          margin: 25px 0;
+          font-size: 0.9em;
+          font-family: sans-serif;
+          min-width: 600px;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .styled-table tbody tr {
+          border-bottom: 1px;
+          background-color: #343a40;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+          background-color: #343a40;
+        }
+
+        .styled-table tbody tr:last-of-type {
+          border-bottom: 2px solid #343a40;
+        }
+
+        .styled-table tbody tr {
+          font-weight: bold;
+          color: white;
+        }
+
+        .styled-table thead tr {
+          background-color: #16111f;
+          color: #ffffff;
+          text-align: left;
+        }
+
+        body {
+          background-image: radial-gradient(#001356 1px, transparent 2px), radial-gradient(#001356 1px, transparent 1px);
+        background-color: #001356;
+        background-position: center;
+        background-size: 8px 8px;
+
+        }
+
+        label {
+          color: #A9A9A9;
+        }
+
+        .btn-primary {
+          float: left;
+          background-color: #55A0CA;
+          border-color: #55A0CA;
+        }
+
+        .container {
+          margin-top: 3rem;
+        }
+
+        .card {
+          margin-top: 50px;
+          background-color: rgb(238, 201, 201);
+        }
+
+        @media only screen and (min-width: 1000px) {
+          .card {
+            margin-left: 10rem;
+            margin-right: 10rem;
+          }
+        }
+
+        .card-body {
+          background-color: #ffffff;
+          padding-left: 4rem;
+          padding-right: 4rem;
+          padding-top: 2rem;
+          padding-bottom: 2rem;
+        }
+
+        .form-group {
+          margin-bottom: 1.5rem;
+        }
+
+        .spinner-grow {
+          color: white !important;
+          height: 5rem;
+          width: 5rem;
+        }
+
+        .wayscript {
+          font-family: Ubuntu, sans-serif;
+          color: #000000;
+        }
+
+        .ws-text-input,
+        .ws-text-area,
+        .ws-select {
+          background-color: #eeeeee;
+          border-color: #16111F;
+          color: rgb(0, 0, 0);
+          min-height: 40px;
+          min-width: 300px;
+
+        }
+
+        .ws-text-input:focus,
+        .ws-text-area:focus,
+        .ws-select:focus {
+          background-color: #ffffff;
+          border-color: #16111F;
+          color: rgb(7, 6, 6);
+        }
+
+        .ws-radio {
+          color: rgb(0, 0, 0);
+        }
+
+        #back_button {
+          margin-right: 10px;
+        }
+
+        #form_cover {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(43, 91, 159, 0.4);
+        }
+
+        #submission_response {
+          margin-top: 40px;
+          justify-content: center;
+          font-size: 3rem;
+        }
+
+        #ws_logo {
+          width: 3rem;
+        }
+
+        #ws_logo_text {
+          width: 10rem;
+          margin-left: -5px;
+        }
+
+        #ws_form_title {
+          background-color: #001356;
+        }
+
+        #ws_form_description {
+          font-size: 15px;
+          margin-bottom: 2rem;
+        }
+
+      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script>
+        'use strict';
+        var downloadURI = (b, c = "") => {
+          var a = document.createElement("a");
+          a.setAttribute("download", c);
+          a.href = b;
+          document.body.appendChild(a);
+          a.click();
+          a.remove()
+        };
+        $(document).ready(function() {
+          $(".spinner-grow").hide();
+          $("#ws_form").submit(function(b) {
+            b.preventDefault();
+            $('\n        <div id="form_cover">\n            <div class="spinner-grow" role="status">\n                <span class="sr-only">Loading...</span>\n            </div>\n        </div>').appendTo($(".card-body"));
+            $(".spinner-grow").show();
+            $("#error_container").hide();
+            b = $(this).attr("action");
+            var c = new FormData(this);
+            $.ajax({
+              type: "POST",
+              url: b,
+              data: c,
+              cache: !1,
+              contentType: !1,
+              processData: !1,
+              success: function(a,
+                f, e) {
+                document.write(a);
+                const d = e.getResponseHeader("X-Download");
+                d && setTimeout(() => downloadURI(d), 1E3)
+              },
+              error: function(a) {
+                $("#form_cover").remove();
+                $("#error_text").text("Error: " + a.responseJSON.error);
+                $("#error_container").show()
+              }
+            })
+          })
+        });
+
+      </script>
+      <title>Data Scraper</title>
+    </head>
+
+    <body>
+      <div class="container" id="ws_container">
+        <div class="row"> <img id="ws_logo_text" src="{% static 'Pages/images/Capture.PNG' %}" style="margin-left:30px"> </div>
+        <div class="card justify-content-center" id="ws_card">
+          <div class="card-header" style="color:white;" id="ws_form_title">FORM IMPROVEMENTS</div>
+          <div class="card-body">
+            <div class="wayscript" id="ws_form_description">
+
+              <form action="#" method="post" class="wayscript" id="ws_form" enctype="multipart/form-data">
+                <label for="select">GROUPING SELECTIONS</label>
+                <br>
+                <select class="wayscript ws-select">
+                  <optgroup label="C-Suite">
+                      <option>CEO</option>
+                      <option>CFO</option>
+                      <option>CMO</option>
+                  </optgroup>
+                  <optgroup label="Managers">
+                      <option>Managing Director</option>
+                      <option>General Manager</option>
+                      <option>Project Manager</option>
+                  </optgroup>
+                  </select>
+                  
+                <div>
+                  <br>
+                  <label for="job">Job Title - PROVIDE DATALIST OPTIONS BUT ALLOW USERS TYPE THEIR INPUTS</label><br>
+                  <input class="wayscript ws-text-input" list="job" type="text" style="width: 90%">
+                  <datalist id="job">
+                    <option value="Chief Medical Officer"></option>
+                    <option value="Chief Executive Officer"></option>
+                    <option value="Chief Operations Officer"></option>
+                    <option value="Chief Technology Officer"></option>
+                    <option value="President"></option>
+                    <option value="VP of Finance"></option>
+                    <option value="VP of Operations"></option>
+                    <option value="VP of Pipelines"></option>
+                    <option value="Director, Supply Chain"></option>
+                    <option value="Director, Oncology"></option>
+                    <option value='Marketing Coordinator'></option>
+                    <option value='Medical Assistant'></option>
+                    <option value='Web Designer'></option>
+                    <option value='Dog Trainer'></option>
+                    <option value='President of Sales'></option>
+                    <option value='Nursing Assistant'></option>
+                    <option value='Project Manager'></option>
+                    <option value='Librarian'></option>
+                    <option value='Project Manager'>
+                    </option>
+                    <option value='Account Executive'></option>
+                  </datalist>
+
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="error_container" style="display: none;">
+        <div class="row" style="justify-content: center;">
+          <p id="error_text" style="color: red;"></p>
+        </div>
+      </div>
+    </body>
+
+  </html>

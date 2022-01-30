@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/709ef5c168.js" crossorigin="anonymous"></script>
+  <title>Test Text-to-speech</title>
+
+  {% load static %}
+
+
+  <link rel="stylesheet" href="{% static 'Pages/demo.css' %}" media="screen">
+  <script class="u-script" type="text/javascript" src="{% static 'Pages/js/demo.js' %}" defer=""></script>
+
+</head>
+<body>
+  
+<div>
+  <div class="listen_box" id="audio">
+    <span class="listen_boxtext" style="font-size:14.3px"><br/ ></span>
+        <button id="listen" type="submit" value="Listen">Listen to this article</button>
+  </div>
+  
+  <div class=buttons id="controls">
+    <button id=play><i class="far fa-play-circle"></i></button>
+    <button id=pause><i class="far fa-pause-circle" id="play"></i></button>
+    <button id=stop><i class="far fa-stop-circle" id="play"></i></button>
+    <i class="fas fa-microphone-alt" style="padding-left: 30px; padding-right:30px;"></i>
+  
+    <label for="rate">&nbsp;Speech-rate&nbsp;</label><input type="range" min="0.5" max="2" value="0.8" step="0.1" id="rate" oninput="testing()">
+  </div>
+</div>
+
+ <div class="full-article-wrapper" style="position: relative; padding:30px;">
+   <h1>This is a dummy header</h1>
+   <p>This is a sample paragraph....</p>
+   <p>Peter Piper picked a peck of pickled peppers,
+A peck of pickled peppers Peter Piper picked.
+If Peter Piper picked a peck of pickled peppers,
+Where’s the peck of pickled peppers Peter Piper picked?</p>
+   <p>This is a sample list.</p>
+   <ul>
+     <li>5 girls</li>
+     <li>5 boys</li>
+     <li>3 gentlemen</li>
+     <li>3 ladies</li>
+   </ul>
+
+ </div> 
+    
+</body>
+</html>

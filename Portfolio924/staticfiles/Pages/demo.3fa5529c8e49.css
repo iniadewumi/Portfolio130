@@ -1,0 +1,54 @@
+
+    #audio.hidden{
+        display:hidden;
+        visibility: hidden;
+      }
+  
+      #audio
+      {
+          color: white;
+        position: relative;
+        vertical-align: top; 
+        top:10px;
+        z-index: 1000011;
+      }
+    
+  
+      #controls.show 
+      {
+        visibility: visible;
+        z-index: 1111111;
+        color: white;
+        background-color: #003974; 
+        position: relative; border: 1px solid grey; 
+        padding: 10px 7px 10px 7px; 
+        border-radius: 10px; 
+        top:-15px;
+        left:10px;
+        max-height: 30px;
+        max-width: 450px;
+        z-index: 1000011;
+        display:flex;
+      }
+    
+  
+    
+      #controls{
+        display:hidden;
+        visibility: hidden;
+      }
+  
+    
+    #audio button{
+      position: relative;
+      left: 6%;
+      transform: translate(-50%);
+      background: #003974;
+      border: 0px;
+      padding:9px;
+      top:7px;
+      border-radius: 3px;
+      color: #FFFFFF;
+      cursor:pointer;
+      }
+  
