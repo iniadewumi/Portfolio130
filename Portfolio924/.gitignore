@@ -5,3 +5,4 @@
 !.elasticbeanstalk/*.global.yml
 !*.sqlite3
 mysite.log
+__pycache__/
