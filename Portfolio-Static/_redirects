@@ -1,0 +1,27 @@
+# Clean URL routing for static site
+/home                           /pages/Home.html                200
+/profile                        /pages/About.html               200
+/portfolio                      /pages/About.html               200
+/contact                        /pages/Contact.html             200
+/fields                         /pages/Fields.html              200
+/resumes                        /pages/Resumes.html             200
+/projects                       /pages/Projects.html            200
+/projects/ceres-demo            /pages/projects/ceres.html      200
+/projects/ceres                 /pages/projects/ceres.html      200
+/projects/score-pred            /pages/projects/ScorePred.html  200
+/projects/image_classifier      /pages/projects/ImageClass.html 200
+/projects/doctrina              /pages/projects/Doctrina.html   200
+/projects/email-generator       /pages/projects/EmailGenerator.html 200
+/projects/text_to_speech_demo   /pages/projects/dummy_build.html 200
+/projects/article_finder        /pages/projects/ArticleRadar.html 200
+/article_finder                 /pages/projects/ArticleRadar.html 200
+/projects/article_results       /pages/projects/ArticleResult.html 200
+/article_results                /pages/projects/ArticleResult.html 200
+/projects/bi-final              /pages/projects/final.html      200
+/bi-final                       /pages/projects/final.html      200
+/projects/vehicle_detector      /pages/projects/VehicleDetector.html 200
+/projects/flappybird            /pages/projects/flappybird.html 200
+/tester                         /pages/delete.html              200
+
+# Index page
+/                               /pages/Home.html                200

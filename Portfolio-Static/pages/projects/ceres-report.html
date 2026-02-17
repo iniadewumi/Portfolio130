@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceres Report</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var params = new URLSearchParams(window.location.search);
+        var reportId = params.get('id');
+
+        if (!reportId) {
+          $('body').html('<h3 style="text-align:center;">Report not found</h3>');
+          return;
+        }
+
+        // Fetch report from serverless function
+        $.ajax({
+          type: 'GET',
+          url: '/.netlify/functions/ceres-reports',
+          success: function(data) {
+            var reports = typeof data === 'string' ? JSON.parse(data) : data;
+            var report = reports.find(function(r) { return String(r.id) === String(reportId); });
+            if (report) {
+              $('#report_title').text('Report for ' + (report.created_at || ''));
+              $('#report_content').html(report.text || '');
+            } else {
+              $('#report_title').text('Report not found');
+            }
+          },
+          error: function() {
+            // Fallback: try loading from static JSON
+            $.getJSON('../../data/ceres_reports.json', function(data) {
+              var report = data.find(function(r) { return String(r.pk || r.id) === String(reportId); });
+              if (report) {
+                var fields = report.fields || report;
+                $('#report_title').text('Report for ' + (fields.created_at || ''));
+                $('#report_content').html(fields.text || '');
+              } else {
+                $('#report_title').text('Report not found');
+              }
+            });
+          }
+        });
+      });
+    </script>
+</head>
+<body>
+    <h3 id="report_title" style="text-align:center;">Loading report...</h3>
+    <div id="report_content"></div>
+</body>
+</html>

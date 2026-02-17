@@ -1,0 +1,190 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu">
+    
+    <style>
+      body {
+        background-image: radial-gradient(black 1px, transparent 2px), radial-gradient(grey 1px, transparent 1px);
+        background-color: #008a8a;
+        background-position: center;
+        background-size: 8px 8px;
+        width: 100%;
+      }
+
+      label {
+        color: white;
+      }
+
+      .btn-primary {
+        float: right;
+        background-color: #024545;
+        border-color: #55A0CA;
+      }
+
+      .container {
+        margin-top: 3rem;
+        margin-left: -25px;
+      }
+
+      .card {
+        margin-top: 50px;
+        background-color: black;
+      }
+
+      @media only screen and (min-width: 1000px) {
+        .card {
+          margin-left: 10rem;
+          margin-right: 10rem;
+        }
+      }
+
+      #dataframe {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        background-color: #ddd;
+      }
+
+      #dataframe td,
+      #dataframe th {
+        border: 1px solid black;
+        padding: 10px;
+      }
+
+      #dataframe tr:nth-child(even) {
+        background-color: #f2f2f2;
+        border: 1px solid black;
+      }
+
+      #dataframe tr:hover {
+        background-color: #ddd;
+      }
+
+      #dataframe th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #024545;
+        color: white;
+      }
+
+      .card-body {
+        width: 1150px;
+        background-color: #02a1a1;
+        padding-left: auto;
+        padding-right: auto;
+        padding-top: auto;
+        padding-bottom: auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .spinner-grow {
+        color: white !important;
+        height: 5rem;
+        width: 5rem;
+        display: none;
+      }
+
+      .wayscript {
+        font-family: "Segoe UI", sans-serif;
+        color: #ffffff;
+      }
+
+      #ws_form_title {
+        width: 1150px;
+        background-color: #024545;
+      }
+
+      #ws_form_description {
+        font-size: 15px;
+        margin-bottom: 2rem;
+      }
+
+      #ws_logo_text {
+        width: 10rem;
+        margin-left: -5px;
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var params = new URLSearchParams(window.location.search);
+        var keyword = params.get('search_keyword');
+
+        if (!keyword) {
+          $('#articles_container').html('<p style="color:white;">No search keyword provided.</p>');
+          return;
+        }
+
+        // Show loading spinner
+        $('.spinner-grow').show();
+
+        // Call the Netlify serverless function
+        $.ajax({
+          type: 'GET',
+          url: '/.netlify/functions/article-search?search_keyword=' + encodeURIComponent(keyword),
+          success: function(data) {
+            $('.spinner-grow').hide();
+            if (data.articles && data.articles.length > 0) {
+              var tableHtml = '<table id="dataframe"><thead><tr>';
+              tableHtml += '<th>SOURCE</th><th>AUTHOR</th><th>TITLE</th><th>DESCRIPTION</th><th>URL</th><th>PUBLISHED</th><th>CONTENT</th>';
+              tableHtml += '</tr></thead><tbody>';
+              data.articles.forEach(function(article) {
+                tableHtml += '<tr>';
+                tableHtml += '<td style="max-width: 150px;">' + (article.source || '') + '</td>';
+                tableHtml += '<td style="max-width: 150px;">' + (article.author || '') + '</td>';
+                tableHtml += '<td style="max-width: 150px;">' + (article.title || '') + '</td>';
+                tableHtml += '<td style="max-width: 150px;">' + (article.description || '') + '</td>';
+                tableHtml += '<td style="max-width: 150px;"><a href="' + (article.url || '#') + '" target="_blank">Link</a></td>';
+                tableHtml += '<td style="max-width: 150px;">' + (article.publishedAt || '') + '</td>';
+                tableHtml += '<td style="max-width: 150px;">' + (article.content || '') + '</td>';
+                tableHtml += '</tr>';
+              });
+              tableHtml += '</tbody></table>';
+              $('#articles_container').html(tableHtml);
+            } else {
+              $('#articles_container').html('<p style="color:white;">No articles found for "' + keyword + '".</p>');
+            }
+          },
+          error: function(err) {
+            $('.spinner-grow').hide();
+            $('#articles_container').html('<p style="color:red;">Error fetching articles. Please try again.</p>');
+          }
+        });
+      });
+    </script>
+    <title>Article Results</title>
+  </head>
+
+  <body data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="">
+    <div class="container" id="ws_container">
+      <div class="row"> <a href="/"> <img id="ws_logo_text" src="../../images/Capture.PNG" style="background: #FFB6C1; border-radius: 25px; margin-left:90px;"> </a> </div>
+      <div class="card justify-content-center" id="ws_card">
+        <div class="card-header wayscript" id="ws_form_title" style="font-weight:bold">NEWS RADAR</div>
+        <div class="card-body">
+          <div class="wayscript" id="ws_form_description">
+            <h5 style="font-weight:bold">ARTICLES</h5>
+          </div>
+          <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div id="articles_container"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="error_container" style="display: none;">
+      <div class="row" style="justify-content: center;">
+        <p id="error_text" style="color: red;"></p>
+      </div>
+    </div>
+  </body>
+
+</html>
