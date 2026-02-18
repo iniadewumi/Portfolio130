@@ -1,147 +1,123 @@
+/* ── Section background ── */
 .u-section-1 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("../images/abstract-linear-background-vector-18100856.jpg");
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                    url("../images/abstract-linear-background-vector-18100856.jpg");
 }
 
-.u-section-1 .u-sheet-1 {
-  min-height: 4500px;
-}
-
+/* ── Page title ── */
 .u-section-1 .u-text-1 {
   font-weight: 400;
   margin: 41px auto 0;
 }
 
+/* ── Gallery grid ── */
 .u-section-1 .u-gallery-1 {
   height: auto;
-  min-height: 2300px;
-  grid-gap: 17px 17px;
+  min-height: 0;
+  grid-gap: 17px;
   margin-top: 41px;
-  margin-bottom: 0;
+  margin-bottom: 60px;
   overflow: visible;
 }
 
 .u-section-1 .u-gallery-inner-1 {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 300px;
-  grid-gap: 22px 22px;
+  grid-gap: 22px;
 }
 
-/* Reduce description font size so text doesn't get cut off */
-.u-section-1 .u-gallery-text {
-  font-size: 0.8rem;
-  line-height: 1.4;
+/* ── Card items ── */
+.u-section-1 .u-gallery-item {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 350ms ease, box-shadow 350ms ease;
 }
 
+.u-section-1 .u-gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Overlay: bottom gradient by default, full on hover ── */
+.u-section-1 .u-over-slide {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.25) 50%,
+    transparent 100%
+  ) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  padding: 24px !important;
+  transition: background 400ms ease !important;
+}
+
+.u-section-1 .u-gallery-item:hover .u-over-slide {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.7) 100%
+  ) !important;
+}
+
+/* ── Headings ── */
 .u-section-1 .u-gallery-heading {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
-.u-section-1 .u-over-slide-1 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
+/* ── Description: hidden by default, revealed on hover ── */
+.u-section-1 .u-gallery-text {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 350ms ease, max-height 350ms ease, margin-top 350ms ease;
+  margin-top: 0 !important;
 }
 
-.u-section-1 .u-over-slide-2 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
+.u-section-1 .u-gallery-item:hover .u-gallery-text {
+  opacity: 1;
+  max-height: 200px;
+  margin-top: 8px !important;
 }
 
+/* ── Per-card image positioning ── */
 .u-section-1 .u-back-image-3 {
   object-position: 100% 50%;
-}
-
-.u-section-1 .u-over-slide-3 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-4 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-5 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-6 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-7 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
 }
 
 .u-section-1 .u-back-image-8 {
   object-position: 27.02% 50%;
 }
 
-.u-section-1 .u-over-slide-8 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
 .u-section-1 .u-back-image-9 {
   object-position: 47.93% 50%;
-}
-
-.u-section-1 .u-over-slide-9 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
 }
 
 .u-section-1 .u-back-image-10 {
   object-position: 6.31% 50%;
 }
 
-.u-section-1 .u-over-slide-10 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-
-.u-section-1 .u-over-slide-12 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-13 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-14 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-15 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
-
-.u-section-1 .u-over-slide-16 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-  padding: 40px;
-}
+/* ───────────────────────────────
+   Responsive
+   ─────────────────────────────── */
 
 @media (max-width: 1199px) {
   .u-section-1 {
     background-position: 50% 50%;
-  }
-
-  .u-section-1 .u-sheet-1 {
-    min-height: 3500px;
-  }
-
-  .u-section-1 .u-gallery-1 {
-    grid-template-columns: repeat(3, auto);
-    height: auto;
-    min-height: 1900px;
-    overflow: visible;
   }
 
   .u-section-1 .u-gallery-inner-1 {
@@ -149,118 +125,44 @@
     grid-auto-rows: 280px;
   }
 
-  .u-section-1 .u-over-slide-1 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-2 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-3 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-4 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-5 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-6 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-7 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-8 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-9 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-10 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-12 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-13 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-14 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-15 {
-    padding: 30px;
-  }
-
-  .u-section-1 .u-over-slide-16 {
-    padding: 30px;
+  .u-section-1 .u-over-slide {
+    padding: 20px !important;
   }
 }
 
 @media (max-width: 991px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 4200px;
-  }
-
-  .u-section-1 .u-gallery-1 {
-    grid-template-columns: repeat(2, auto);
-    height: auto;
-    min-height: 3000px;
-    overflow: visible;
-  }
-
   .u-section-1 .u-gallery-inner-1 {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 280px;
   }
-
 }
 
 @media (max-width: 767px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 4500px;
-  }
-
-  .u-section-1 .u-gallery-1 {
-    grid-template-columns: auto;
-    height: auto;
-    min-height: 2500px;
-    overflow: visible;
-  }
-
   .u-section-1 .u-gallery-inner-1 {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 250px;
   }
-
 }
 
 @media (max-width: 575px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 6500px;
-  }
-
-  .u-section-1 .u-gallery-1 {
-    height: auto;
-    min-height: 5800px;
-    overflow: visible;
-  }
-
   .u-section-1 .u-gallery-inner-1 {
     grid-template-columns: 1fr;
     grid-auto-rows: 250px;
+  }
+
+  /* On mobile (no hover), always show description */
+  .u-section-1 .u-over-slide {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.4) 60%,
+      transparent 100%
+    ) !important;
+  }
+
+  .u-section-1 .u-gallery-text {
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 8px !important;
   }
 }

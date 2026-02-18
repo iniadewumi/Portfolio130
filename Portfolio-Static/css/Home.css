@@ -105,6 +105,25 @@
   margin: 0 auto;
 }
 
+/* Sharp edges overrides */
+.u-section-1 .u-group-1 {
+  border-radius: 4px !important;
+}
+
+.u-section-1 .u-group-1 > .u-container-layout-1 {
+  border-radius: 4px !important;
+}
+
+.u-section-1 .u-image-1 {
+  border-radius: 4px !important;
+}
+
+.u-section-1 .u-btn-1,
+.u-section-1 .u-btn-2,
+.u-section-1 .u-btn-3 {
+  border-radius: 4px !important;
+}
+
 .u-section-1 .u-social-icons-1 {
   white-space: nowrap;
   height: 49px;
